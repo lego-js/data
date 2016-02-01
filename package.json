@@ -1,6 +1,6 @@
 {
   "name": "lego-data",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Binding data to DOM elements",
   "main": "index.js",
   "scripts": {
