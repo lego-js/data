@@ -23,20 +23,20 @@ function deburrLetter(letter) {
 }
 
 function deburr(string) {
-    string = toString(string);
+    string = String(string);
     return string && string
     	.replace(/[\xc0-\xd6\xd8-\xde\xdf-\xf6\xf8-\xff]/g, deburrLetter)
     	.replace(/[\u0300-\u036f\ufe20-\ufe23\u20d0-\u20f0]/g, '');
 }
 
 function capitalize(string) {
-	return string.relpace(/^(.)/, l => l.toUpperCase());
+	return string.replace(/^(.)/, l => l.toUpperCase());
 }
 
 function words(string) {
 	return deburr(string)
 		.replace(/\s*([A-Z])/g, ' $1')
-		.replace(/[\s-]*/g, ' ')
+		.replace(/[\s-]+/g, ' ')
 		.split(' ');
 }
 
