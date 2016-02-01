@@ -1,6 +1,6 @@
 {
   "name": "lego-data",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Binding data to DOM elements",
   "main": "index.js",
   "scripts": {
@@ -20,5 +20,13 @@
   "bugs": {
     "url": "https://github.com/lego-js/data/issues"
   },
-  "homepage": "https://github.com/lego-js/data#readme"
+  "homepage": "https://github.com/lego-js/data#readme",
+  "devDependencies": {
+    "babelify": "^7.2.0",
+    "babel-preset-es2015": "^6.1.18",
+    "browserify": "^12.0.1"
+  },
+  "browserify": {
+    "transform": [["babelify", { "presets": ["es2015"] }]]
+  }
 }
