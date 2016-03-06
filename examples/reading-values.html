@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>data demo</title>
+    <style>
+        div {
+            color: blue;
+        }
+        span {
+            color: red;
+        }
+    </style>
+    <script src="https://rawgit.com/lego-js/data/master/build/es5-data.js"></script>
+</head>
+<body>
+
+<div>
+    The values stored were
+    <span></span>
+    and
+    <span></span>
+</div>
+
+<script>
+    var div = document.querySelector( "div" );
+    data( div, 'test', {
+        first: 16,
+        last: 'pizza!'
+    });
+    document.querySelectorAll('span')[0].innerHTML = data( div, 'test').first;
+    document.querySelectorAll('span')[1].innerHTML = data( div, 'test').last;
+</script>
+
+</body>
+</html>

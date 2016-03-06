@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>data demo</title>
+    <style>
+        div {
+            margin: 5px;
+            background: yellow;
+        }
+        button {
+            margin: 5px;
+            font-size: 14px;
+        }
+        p {
+            margin: 5px;
+            color: blue;
+        }
+        span {
+            color: red;
+        }
+    </style>
+    <script src="https://rawgit.com/lego-js/data/master/build/es5-data.js"></script>
+</head>
+<body>
+
+<div>A div</div>
+<button>Get "blah" from the div</button>
+<button>Set "blah" to "hello"</button>
+<button>Set "blah" to 86</button>
+<p>The "blah" value of this div is <span>?</span></p>
+
+<script>
+
+    var div = document.querySelector('div');
+    var buttons = document.querySelectorAll('button');
+    var span = document.querySelector('span');
+
+    buttons[0].addEventListener('click', function() {
+        span.innerHTML = data( div, 'blah' );
+    });
+
+    buttons[1].addEventListener('click', function() {
+        data( div, 'blah', 'hello' );
+        span.innerHTML = 'Stored!';
+    });
+
+    buttons[2].addEventListener('click', function() {
+        data( div, 'blah', 86 );
+        span.innerHTML = 'Stored!';
+    });
+
+</script>
+
+</body>
+</html>

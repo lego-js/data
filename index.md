@@ -62,7 +62,7 @@ Store then retrieve a value from the div element.
           color: red;
         }
       </style>
-      <script src="build/es5-data.js"></script>
+      <script src="https://rawgit.com/lego-js/data/master/build/es5-data.js"></script>
     </head>
     <body>
  
@@ -88,7 +88,7 @@ Store then retrieve a value from the div element.
 
 ### Demo:
 
-<iframe width="100%" height="250"></iframe>
+<iframe width="100%" height="250" src="examples/reading-values.html"></iframe>
 
 ## data( element, [key] )
 
@@ -169,7 +169,7 @@ Get the data named 'blah' stored at for an element.
         color: red;
       }
     </style>
-    <script src="build/es5-data.js"></script>
+    <script src="https://rawgit.com/lego-js/data/master/build/es5-data.js"></script>
     </head>
     <body>
     
@@ -181,20 +181,21 @@ Get the data named 'blah' stored at for an element.
     
     <script>
     
+      var div = document.querySelector('div');
       var buttons = document.querySelectorAll('button');
-      var span = document.querySelector('span')
+      var span = document.querySelector('span');
       
       buttons[0].addEventListener('click', function() {
-        span.innerHTML = data( this, 'blah' );
+        span.innerHTML = data( div, 'blah' );
       });
       
       buttons[1].addEventListener('click', function() {
-        data( this, 'blah', 'hello' );
+        data( div, 'blah', 'hello' );
         span.innerHTML = 'Stored!';
       });
       
       buttons[2].addEventListener('click', function() {
-        data( this, 'blah', 86 );
+        data( div, 'blah', 86 );
         span.innerHTML = 'Stored!';
       });
 
@@ -205,4 +206,4 @@ Get the data named 'blah' stored at for an element.
 
 ### Demo:
 
-<iframe width="100%" height="250"></iframe>
+<iframe width="100%" height="250" src="examples/interactive-buttons.html"></iframe>
