@@ -1,0 +1,19 @@
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your whole blog, values
+# which you are expected to set up once and rarely need to edit after that.
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'jekyll serve'. If you change this file, please restart the server process.
+
+# Site settings
+title: Lego Data
+email: brandonpoe@me.com
+description: > # this means to ignore newlines until "baseurl:"
+  Store arbitrary data associated with the specified element and/or return the value that was set.
+baseurl: "/data" # the subpath of your site, e.g. /blog
+url: "https://lego-js.github.io" # the base hostname & protocol for your site
+twitter_username: btpoe
+github_username:  btpoe
+
+# Build settings
+markdown: kramdown

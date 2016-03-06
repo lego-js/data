@@ -3,7 +3,7 @@ layout: default
 title: "Lego Data Documentation"
 ---
 
-# data()
+# Lego Data Documentation
 
 Store arbitrary data associated with the specified element and/or return the value that was set.
 
@@ -32,11 +32,13 @@ Store arbitrary data associated with the specified element and/or return the val
 
 The `data()` method allows us to attach data of any type to DOM elements in a way that is safe from circular references and therefore free from memory leaks. The data is stored directly on the DOM elements using a Symbol. The advantages of this method is that the values are gaurenteed to not clash with and 3rd party data added to the elements along with any future specifications that may come. The second advantage is that garbage collection is handled by the browser, not the lib, so if a DOM element is removed, so too is it's associated data. We can set several distinct values for a single element and retrieve them later:
 
-    data( document.body, 'foo', 52 );
-    data( document.body, 'bar', { myType: 'test', count: 40 } );
-    data( doucment.body, { baz: [ 1, 2, 3 ] } );
-    data( document.body, 'foo' ); // 52
-    data( document.body ); // { foo: 52, bar: { myType: "test", count: 40 }, baz: [ 1, 2, 3 ] }
+```javascript
+data( document.body, 'foo', 52 );
+data( document.body, 'bar', { myType: 'test', count: 40 } );
+data( doucment.body, { baz: [ 1, 2, 3 ] } );
+data( document.body, 'foo' ); // 52
+data( document.body ); // { foo: 52, bar: { myType: "test", count: 40 }, baz: [ 1, 2, 3 ] }
+```
 
 ### Additional Notes:
 
@@ -49,42 +51,44 @@ The `data()` method allows us to attach data of any type to DOM elements in a wa
 
 Store then retrieve a value from the div element.
 
-    <!doctype html>
-    <html lang="en">
-    <head>
-      <meta charset="utf-8">
-      <title>data demo</title>
-      <style>
-        div {
-          color: blue;
-        }
-        span {
-          color: red;
-        }
-      </style>
-      <script src="https://rawgit.com/lego-js/data/master/build/es5-data.js"></script>
-    </head>
-    <body>
+```html
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>data demo</title>
+  <style>
+    div {
+      color: blue;
+    }
+    span {
+      color: red;
+    }
+  </style>
+  <script src="https://rawgit.com/lego-js/data/master/build/es5-data.js"></script>
+</head>
+<body>
+
+<div>
+  The values stored were
+  <span></span>
+  and
+  <span></span>
+</div>
+
+<script>
+  var div = document.querySelector( "div" );
+  data( div, 'test', {
+    first: 16,
+    last: 'pizza!'
+  });
+  document.querySelectorAll('span')[0].innerHTML = data( div, 'test').first;
+  document.querySelectorAll('span')[1].innerHTML = data( div, 'test').last;
+</script>
  
-    <div>
-      The values stored were
-      <span></span>
-      and
-      <span></span>
-    </div>
- 
-    <script>
-      var div = document.querySelector( "div" );
-      data( div, 'test', {
-        first: 16,
-        last: 'pizza!'
-      });
-      document.querySelectorAll('span')[0].innerHTML = data( div, 'test').first;
-      document.querySelectorAll('span')[1].innerHTML = data( div, 'test').last;
-    </script>
-     
-    </body>
-    </html>
+</body>
+</html>
+```
 
 ### Demo:
 
@@ -111,9 +115,10 @@ Store then retrieve a value from the div element.
 
 The `data()` method allows us to attach data of any type to DOM elements in a way that is safe from circular references and therefore from memory leaks. We can retrieve several distinct values for a single element one at a time, or as a set:
 
-    alert( data( document.body, 'foo' ) );
-    alert( data( document.body ) );
-
+```javascript
+alert( data( document.body, 'foo' ) );
+alert( data( document.body ) );
+```
 
 The above lines alert the data values that were set on the `body` element. If nothing was set on that element, `undefined` is returned.
 
@@ -124,15 +129,19 @@ HTML5 `data-*` attributes will be automatically pulled in to lego-data's object.
 
 For example, given the following HTML:
 
-    <div data-role="page" data-last-value="43" data-hidden="true" data-options='{"name":"John"}'></div>
+```html
+<div data-role="page" data-last-value="43" data-hidden="true" data-options='{"name":"John"}'></div>
+```
 
 All of the following jQuery code will work.
 
-    data( el, 'role' ) === 'page';
-    data( el, 'lastValue' ) === 43;
-    data( el, 'hidden' ) === true;
-    data( el, 'options' ).name === 'John';
-    
+```javascript
+data( el, 'role' ) === 'page';
+data( el, 'lastValue' ) === 43;
+data( el, 'hidden' ) === true;
+data( el, 'options' ).name === 'John';
+```
+
 The second statement of the code above correctly refers to the `data-last-value` attribute of the element. In case no data is stored with the passed key, lego-data searches the `dataset` of the element. For more information of how the dataset please refer to WC3's specification page **[needlink]**.
 
 When the data attribute is an object (starts with '{') or array (starts with '[') then jQuery.parseJSON is used to parse the string; it must follow valid JSON syntax including quoted property names. If the value isn't parseable as a JavaScript value, it is left as a string.
@@ -147,62 +156,64 @@ Calling `data( element )` retrieves all of the element's associated values as a 
 
 Get the data named 'blah' stored at for an element.
 
-    <!doctype html>
-    <html lang="en">
-    <head>
-    <meta charset="utf-8">
-    <title>data demo</title>
-    <style>
-      div {
-        margin: 5px;
-        background: yellow;
-      }
-      button {
-        margin: 5px;
-        font-size: 14px;
-      }
-      p {
-        margin: 5px;
-        color: blue;
-      }
-      span {
-        color: red;
-      }
-    </style>
-    <script src="https://rawgit.com/lego-js/data/master/build/es5-data.js"></script>
-    </head>
-    <body>
-    
-    <div>A div</div>
-    <button>Get "blah" from the div</button>
-    <button>Set "blah" to "hello"</button>
-    <button>Set "blah" to 86</button>
-    <p>The "blah" value of this div is <span>?</span></p>
-    
-    <script>
-    
-      var div = document.querySelector('div');
-      var buttons = document.querySelectorAll('button');
-      var span = document.querySelector('span');
-      
-      buttons[0].addEventListener('click', function() {
-        span.innerHTML = data( div, 'blah' );
-      });
-      
-      buttons[1].addEventListener('click', function() {
-        data( div, 'blah', 'hello' );
-        span.innerHTML = 'Stored!';
-      });
-      
-      buttons[2].addEventListener('click', function() {
-        data( div, 'blah', 86 );
-        span.innerHTML = 'Stored!';
-      });
+```html
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>data demo</title>
+<style>
+  div {
+    margin: 5px;
+    background: yellow;
+  }
+  button {
+    margin: 5px;
+    font-size: 14px;
+  }
+  p {
+    margin: 5px;
+    color: blue;
+  }
+  span {
+    color: red;
+  }
+</style>
+<script src="https://rawgit.com/lego-js/data/master/build/es5-data.js"></script>
+</head>
+<body>
 
-    </script>
-    
-    </body>
-    </html>
+<div>A div</div>
+<button>Get "blah" from the div</button>
+<button>Set "blah" to "hello"</button>
+<button>Set "blah" to 86</button>
+<p>The "blah" value of this div is <span>?</span></p>
+
+<script>
+
+  var div = document.querySelector('div');
+  var buttons = document.querySelectorAll('button');
+  var span = document.querySelector('span');
+  
+  buttons[0].addEventListener('click', function() {
+    span.innerHTML = data( div, 'blah' );
+  });
+  
+  buttons[1].addEventListener('click', function() {
+    data( div, 'blah', 'hello' );
+    span.innerHTML = 'Stored!';
+  });
+  
+  buttons[2].addEventListener('click', function() {
+    data( div, 'blah', 86 );
+    span.innerHTML = 'Stored!';
+  });
+
+</script>
+
+</body>
+</html>
+```
 
 ### Demo:
 
