@@ -81,10 +81,6 @@ Store then retrieve a value from the div element.
     </body>
     </html>
 
-### Demo:
-
-<iframe width="100%" height="250"></iframe>
-
 ## data( element, [key] )
 
 **Description:** Returns value at named data store for the element, as set by `data(element, name, value)`, by an HTML5 `data-*` attribute. If no key is provided, the full data store for the element is returned.
@@ -197,7 +193,3 @@ Get the data named 'blah' stored at for an element.
     
     </body>
     </html>
-
-### Demo:
-
-<iframe width="100%" height="250"></iframe>
