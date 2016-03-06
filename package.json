@@ -28,6 +28,12 @@
     "glob": "^6.0.4",
     "gulp": "^3.9.0",
     "gulp-sourcemaps": "^1.6.0",
+    "jasmine-core": "^2.4.1",
+    "karma": "^0.13.19",
+    "karma-chrome-launcher": "^0.2.2",
+    "karma-jasmine": "^0.3.7",
+    "karma-requirejs": "^0.2.4",
+    "requirejs": "^2.1.22",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.7.0"

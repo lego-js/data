@@ -1,5 +1,3 @@
-import data from '../../src/index';
-
 describe('The data service', function() {
 
     beforeEach(function() {

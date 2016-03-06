@@ -3,6 +3,7 @@ var glob = require('glob');
 var source = require('vinyl-source-stream');
 var browserify = require('browserify');
 var watchify = require('watchify');
+var Server = require('karma').Server;
 
 function compile(entry, watch) {
     var bundler = browserify({ entries: [entry], debug: true }).transform('babelify', { presets: ['es2015'] });
@@ -13,7 +14,7 @@ function compile(entry, watch) {
         bundler.bundle()
             .on('error', function(err) { console.error(err); this.emit('end'); })
             .pipe(source(name))
-            .pipe(gulp.dest('./test/dist'));
+            .pipe(gulp.dest('./build'));
     }
 
     if (watch) {
@@ -27,7 +28,7 @@ function compile(entry, watch) {
 }
 
 function compileAll(watch) {
-    glob('./test/src/*[sS]pec.js', function(err, files) {
+    glob('./src/es5-*.js', function(err, files) {
         if(err) return;
 
         files.map(function(entry) {
@@ -36,10 +37,19 @@ function compileAll(watch) {
     })
 }
 
+function serveKarma(watch) {
+    new Server({
+        configFile: __dirname + '/karma.conf.js',
+        singleRun: !watch
+    }).start();
+}
+
 gulp.task('default', function() {
     compileAll();
+    serveKarma();
 });
 
 gulp.task('watch', function() {
     compileAll(true);
+    serveKarma(true);
 });

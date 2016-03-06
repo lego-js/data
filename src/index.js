@@ -1,7 +1,7 @@
 import assign from './utils/assign';
 import { camelCase, kebabCase } from './utils/string';
 
-export const DATA_KEY = Symbol && Symbol('data') || '__UNION__appDataKey';
+export const DATA_KEY = Symbol && Symbol('data') || '__LEGO__DATA_KEY';
 
 export default function (elem, key, value) {
     // die if elem null
@@ -32,11 +32,16 @@ export default function (elem, key, value) {
             return data = assign({}, elem.dataset, data);
         }
 
-        // find element attributes that start with 'data-' and assign their value to data cache with a camelCase key
         let dataset = {};
-        Object.keys(elem.attributes).filter(key => elem.attributes[key].indexOf('data-') === 0).forEach(key => {
-            dataset[camelCase(key.replace('data-', ''))] = elem.getAttribute(key);
-        });
+
+        // if there isn't an attributes property on the object, we aren't working with a DOM node.
+        if (elem.attributes) {
+            // find element attributes that start with 'data-' and assign their value to data cache with a camelCase key
+            Object.keys(elem.attributes).filter(key => elem.attributes[key].indexOf('data-') === 0).forEach(key => {
+                dataset[camelCase(key.replace('data-', ''))] = elem.getAttribute(key);
+            });
+        }
+        
         // any existing data in cache takes precedence over dataset
         return data = assign({}, dataset, data);
     }
