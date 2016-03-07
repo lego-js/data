@@ -133,7 +133,7 @@ For example, given the following HTML:
 <div data-role="page" data-last-value="43" data-hidden="true" data-options='{"name":"John"}'></div>
 ```
 
-All of the following jQuery code will work.
+All of the following code will work.
 
 ```javascript
 data( el, 'role' ) === 'page';
@@ -143,8 +143,6 @@ data( el, 'options' ).name === 'John';
 ```
 
 The second statement of the code above correctly refers to the `data-last-value` attribute of the element. In case no data is stored with the passed key, lego-data searches the `dataset` of the element. For more information of how the dataset please refer to WC3's specification page **[needlink]**.
-
-When the data attribute is an object (starts with '{') or array (starts with '[') then jQuery.parseJSON is used to parse the string; it must follow valid JSON syntax including quoted property names. If the value isn't parseable as a JavaScript value, it is left as a string.
 
 No attempt is made to convert the `data-*` string to any other datatype. If the value is JSON, then you'll need to run the value through `JSON.parse`.
 
