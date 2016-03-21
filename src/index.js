@@ -1,7 +1,7 @@
 import assign from './utils/assign';
 import { camelCase, kebabCase } from './utils/string';
 
-export const DATA_KEY = Symbol && Symbol('data') || '__LEGO__DATA_KEY';
+export var DATA_KEY = window.Symbol && Symbol('data') || '__LEGO__DATA_KEY';
 
 export default function (elem, key, value) {
     // die if elem null
