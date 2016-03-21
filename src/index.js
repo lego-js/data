@@ -37,7 +37,7 @@ export default function (elem, key, value) {
         // if there isn't an attributes property on the object, we aren't working with a DOM node.
         if (elem.attributes) {
             // find element attributes that start with 'data-' and assign their value to data cache with a camelCase key
-            Object.keys(elem.attributes).filter(key => elem.attributes[key].indexOf('data-') === 0).forEach(key => {
+            Object.keys(elem.attributes).filter(key => typeof elem.attributes[key] === 'string' && elem.attributes[key].indexOf('data-') === 0).forEach(key => {
                 dataset[camelCase(key.replace('data-', ''))] = elem.getAttribute(key);
             });
         }
