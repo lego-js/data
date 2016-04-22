@@ -1,3 +1,7 @@
-test
-gulpfile.js
+.idea
+build
+build.js
+es5-*.js
+img
 karma.conf.js
+test
